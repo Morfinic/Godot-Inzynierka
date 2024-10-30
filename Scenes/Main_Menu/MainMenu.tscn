@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://6a33rf2ypejt"]
+
+[ext_resource type="Script" path="res://Scenes/Main_Menu/main_menu.gd" id="1_selpb"]
+[ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu_button.tres" id="1_xcx37"]
+[ext_resource type="PackedScene" uid="uid://d4m3fkhi3r0lg" path="res://Scenes/Main_Menu/Settings/Settings.tscn" id="2_eojqr"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_selpb")
+settings_scene = ExtResource("2_eojqr")
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu_Center_Container" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -364.0
+offset_right = 640.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBox_Buttons" type="VBoxContainer" parent="Menu_Center_Container"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Start" type="Button" parent="Menu_Center_Container/VBox_Buttons"]
+layout_mode = 2
+theme = ExtResource("1_xcx37")
+text = "Start"
+
+[node name="Settings" type="Button" parent="Menu_Center_Container/VBox_Buttons"]
+layout_mode = 2
+theme = ExtResource("1_xcx37")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Menu_Center_Container/VBox_Buttons"]
+layout_mode = 2
+theme = ExtResource("1_xcx37")
+text = "Exit"
+
+[connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Exit" to="." method="_on_exit_pressed"]
