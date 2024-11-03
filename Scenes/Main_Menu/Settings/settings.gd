@@ -25,7 +25,6 @@ func _ready() -> void:
 
 func _on_return_button_pressed() -> void:
 	GameSettings.save_game_settings()
-	get_tree().paused = false
 	queue_free()
 
 

@@ -144,6 +144,7 @@ layout_mode = 2
 theme = ExtResource("1_xcx37")
 text = "Exit"
 
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Exit" to="." method="_on_exit_pressed"]
