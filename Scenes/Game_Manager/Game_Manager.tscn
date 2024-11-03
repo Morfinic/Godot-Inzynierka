@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://do25iydep8121"]
+
+[ext_resource type="Script" path="res://Scenes/Game_Manager/pause_manager.gd" id="1_jnkjo"]
+[ext_resource type="PackedScene" uid="uid://d4m3fkhi3r0lg" path="res://Scenes/Main_Menu/Settings/Settings.tscn" id="2_xpio0"]
+[ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="3_bep1k"]
+
+[node name="GameManager" type="Node2D"]
+process_mode = 1
+
+[node name="Pause_Manager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("1_jnkjo")
+settings_menu = ExtResource("2_xpio0")
+
+[node name="Pause_Menu" type="Control" parent="Pause_Manager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="Pause_Manager/Pause_Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Manager/Pause_Menu/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Resume" type="Button" parent="Pause_Manager/Pause_Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bep1k")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Pause_Manager/Pause_Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bep1k")
+text = "Settings"
+
+[node name="Return_To_Menu" type="Button" parent="Pause_Manager/Pause_Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bep1k")
+text = "Return to menu"
+
+[connection signal="pressed" from="Pause_Manager/Pause_Menu/CenterContainer/VBoxContainer/Resume" to="Pause_Manager" method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause_Manager/Pause_Menu/CenterContainer/VBoxContainer/Settings" to="Pause_Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="Pause_Manager/Pause_Menu/CenterContainer/VBoxContainer/Return_To_Menu" to="Pause_Manager" method="_on_return_to_menu_pressed"]
