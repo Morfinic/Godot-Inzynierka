@@ -1,7 +1,5 @@
 res://Scenes/Actors/Player/Player.tscn
-res://Scenes/Actors/Player/player.gd
 res://Themes/menu.tres
 res://Scenes/Game_Manager/Game_Manager.tscn
-res://Scenes/Game_Manager/Level_Generators/Walker/Walker.tscn
-res://Scenes/Game_Manager/pause_manager.gd
-res://Scenes/Game_Manager/run_stats.gd
+res://Scenes/Actors/Player/weapon.gd
+res://Scenes/Game_Manager/level_manager.gd

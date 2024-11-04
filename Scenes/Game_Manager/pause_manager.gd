@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
+		$Pause_Menu.position = $"../Level_Manager/Player".position
 		if !paused:
 			get_tree().paused = true
 			paused = true
@@ -23,8 +24,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_resume_pressed() -> void:
-	$Pause_Menu.hide()
 	get_tree().paused = false
+	paused = false
+	$Pause_Menu.hide()
 
 
 func _on_settings_pressed() -> void:

@@ -1,4 +1,4 @@
 extends Node
 
 
-@onready var Floor: int = 0
+@onready var Floor: int = 1
