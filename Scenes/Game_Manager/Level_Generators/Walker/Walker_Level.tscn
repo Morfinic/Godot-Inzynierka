@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bl1w3iu7uk82q"]
+[gd_scene load_steps=11 format=4 uid="uid://bl1w3iu7uk82q"]
 
 [ext_resource type="Texture2D" uid="uid://c53pwmdcbqwmu" path="res://Assets/godot_inz_background.png" id="1_g4i83"]
 [ext_resource type="Script" path="res://Scenes/Game_Manager/Level_Generators/Walker/terrain.gd" id="1_xroo3"]
+[ext_resource type="PackedScene" uid="uid://c2f251vwx2led" path="res://Scenes/Exit/Exit.tscn" id="2_2ycnl"]
 [ext_resource type="Script" path="res://Scenes/Main_Menu/background.gd" id="2_obt1t"]
+[ext_resource type="PackedScene" uid="uid://dlsox1gb4ljat" path="res://Scenes/Treausre/Treasure.tscn" id="3_hbc65"]
 [ext_resource type="Texture2D" uid="uid://wmv7lt7lkwhn" path="res://Assets/level_tileset.png" id="3_yc8is"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q2fpw"]
@@ -510,8 +512,10 @@ terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(1, 0, 0, 1)
 sources/1 = SubResource("TileSetAtlasSource_8xoca")
 
-[node name="Walker" type="Node2D"]
+[node name="Walker_Level" type="Node2D"]
 script = ExtResource("1_xroo3")
+exit = ExtResource("2_2ycnl")
+treasure = ExtResource("3_hbc65")
 
 [node name="Terrain" type="Node2D" parent="."]
 

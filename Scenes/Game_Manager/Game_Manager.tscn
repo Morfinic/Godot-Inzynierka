@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="3_bep1k"]
 [ext_resource type="Script" path="res://Scenes/Game_Manager/level_manager.gd" id="4_tbcna"]
 [ext_resource type="Script" path="res://Scenes/Game_Manager/run_stats.gd" id="4_ya052"]
-[ext_resource type="PackedScene" uid="uid://bl1w3iu7uk82q" path="res://Scenes/Game_Manager/Level_Generators/Walker/Walker.tscn" id="5_acbb5"]
+[ext_resource type="PackedScene" uid="uid://bl1w3iu7uk82q" path="res://Scenes/Game_Manager/Level_Generators/Walker/Walker_Level.tscn" id="5_acbb5"]
 [ext_resource type="PackedScene" uid="uid://bx8eedfpw8nh0" path="res://Scenes/Actors/Player/Player.tscn" id="7_0t5f8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp7cb"]
@@ -101,3 +101,4 @@ script = ExtResource("4_ya052")
 [connection signal="pressed" from="Pause_Manager/Pause_Menu/VBoxContainer/Resume" to="Pause_Manager" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause_Manager/Pause_Menu/VBoxContainer/Settings" to="Pause_Manager" method="_on_settings_pressed"]
 [connection signal="pressed" from="Pause_Manager/Pause_Menu/VBoxContainer/Return_To_Menu" to="Pause_Manager" method="_on_return_to_menu_pressed"]
+[connection signal="child_exiting_tree" from="Level_Manager" to="Level_Manager" method="_on_level_manager_child_exiting_tree"]

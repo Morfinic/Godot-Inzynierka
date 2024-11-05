@@ -5,6 +5,7 @@ const SPEED = 150.0
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var stats: Node = $Stats
 
 
 func _physics_process(delta: float) -> void:
@@ -23,3 +24,7 @@ func _physics_process(delta: float) -> void:
 
 	velocity = direction * SPEED
 	move_and_slide()
+
+
+func update_gold():
+	stats.gold += randi() % 9 + 5

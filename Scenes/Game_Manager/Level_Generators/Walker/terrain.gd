@@ -4,6 +4,10 @@ extends Node2D
 @onready var floor_tilemap: TileMapLayer = $Terrain/Level
 
 
+@export var exit: PackedScene
+@export var treasure: PackedScene
+
+
 var starting_position := Vector2(18, 9)
 var borders := Rect2(1, 1, 38, 20)
 var map: Array
@@ -13,6 +17,8 @@ var player: CharacterBody2D
 func _ready() -> void:
 	generate_level()
 	place_player()
+	place_exit()
+	place_treasure()
 
 func generate_level():
 	var walker = Walker.new(starting_position, borders)
@@ -26,8 +32,47 @@ func generate_level():
 
 
 func place_player():
+	var _spawn_tile = map[0]
+	map.erase(_spawn_tile)
+
 	var player_spawn_position = Vector2(
-		map[0].x * 32 + 16,
-		map[0].y * 32 + 16
+		_spawn_tile.x * 32 + 16,
+		_spawn_tile.y * 32 + 16
 	)
 	player.position = player_spawn_position
+
+
+func place_exit():
+	var exit_node = exit.instantiate()
+	var _spawn_tile = map[-1]
+	map.erase(_spawn_tile)
+
+	var exit_position = Vector2(
+		_spawn_tile.x * 32 + 16,
+		_spawn_tile.y * 32 + 16
+	)
+
+	exit_node.position = exit_position
+	add_child(exit_node)
+	exit_node.connect("level_finished", Callable(self, "finish_level"))
+
+
+func finish_level():
+	queue_free()
+
+
+func place_treasure():
+	var treasure_amount = floor(map.size() / 30)
+
+	for i in treasure_amount:
+		var _spawn_tile = map.pick_random()
+		map.erase(_spawn_tile)
+
+		var treasure_position = Vector2(
+			_spawn_tile.x * 32 + 16,
+			_spawn_tile.y * 32 + 16
+		)
+
+		var treasure_node = treasure.instantiate()
+		treasure_node.position = treasure_position
+		add_child(treasure_node)
