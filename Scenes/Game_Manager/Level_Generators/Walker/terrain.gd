@@ -6,6 +6,7 @@ extends Node2D
 
 @export var exit: PackedScene
 @export var treasure: PackedScene
+@export var enemy: PackedScene
 
 
 var starting_position := Vector2(18, 9)
@@ -19,6 +20,7 @@ func _ready() -> void:
 	place_player()
 	place_exit()
 	place_treasure()
+	place_enemies()
 
 func generate_level():
 	var walker = Walker.new(starting_position, borders)
@@ -40,6 +42,7 @@ func place_player():
 		_spawn_tile.y * 32 + 16
 	)
 	player.position = player_spawn_position
+	map.erase(_spawn_tile)
 
 
 func place_exit():
@@ -55,6 +58,7 @@ func place_exit():
 	exit_node.position = exit_position
 	add_child(exit_node)
 	exit_node.connect("level_finished", Callable(self, "finish_level"))
+	map.erase(_spawn_tile)
 
 
 func finish_level():
@@ -76,3 +80,22 @@ func place_treasure():
 		var treasure_node = treasure.instantiate()
 		treasure_node.position = treasure_position
 		add_child(treasure_node)
+
+
+func place_enemies():
+	var enemy_amount = floor(map.size() / 30)
+	#var enemy_amount = 1
+
+	for i in enemy_amount:
+		var _spawn_tile = map.pick_random()
+		map.erase(_spawn_tile)
+
+		var enemy_position = Vector2(
+			_spawn_tile.x * 32 + 16,
+			_spawn_tile.y * 32 + 16
+		)
+
+		var enemy_node = enemy.instantiate()
+		enemy_node.position = enemy_position
+		enemy_node.player_body = player
+		add_child(enemy_node)

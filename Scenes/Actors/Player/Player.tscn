@@ -1,13 +1,14 @@
-[gd_scene load_steps=30 format=3 uid="uid://bx8eedfpw8nh0"]
+[gd_scene load_steps=31 format=3 uid="uid://bx8eedfpw8nh0"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player/player.gd" id="1_4fb02"]
 [ext_resource type="Texture2D" uid="uid://cgoyxtyiwofgn" path="res://Scenes/Actors/Player/Assets/Player_Idle.png" id="2_3di1n"]
-[ext_resource type="Script" path="res://Scenes/Actors/Player/stats.gd" id="2_kawnm"]
 [ext_resource type="Texture2D" uid="uid://dd3ovarx7howp" path="res://Scenes/Actors/Player/Assets/Player_Move_down.png" id="2_p8cs4"]
+[ext_resource type="PackedScene" uid="uid://2org5kcgins4" path="res://Scenes/Actors/stats.tscn" id="2_tvyju"]
 [ext_resource type="Texture2D" uid="uid://bmxbwvnbx4lnb" path="res://Scenes/Actors/Player/Assets/Player_Move_Up.png" id="4_pk2ar"]
 [ext_resource type="Texture2D" uid="uid://c8cmoma52xbgf" path="res://Scenes/Actors/Player/Assets/Player_Side_Walk.png" id="4_py253"]
 [ext_resource type="Texture2D" uid="uid://c6jnc60j2v8dq" path="res://Assets/Weapons/sword.png" id="6_6twh4"]
 [ext_resource type="Script" path="res://Scenes/Actors/Player/weapon.gd" id="6_iedbd"]
+[ext_resource type="AudioStream" uid="uid://ce4nvc2023fwb" path="res://Scenes/Main_Menu/Settings/Audio/arrow_shot.wav" id="9_owaxd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bumqr"]
 atlas = ExtResource("2_3di1n")
@@ -599,10 +600,10 @@ _data = {
 collision_layer = 2
 script = ExtResource("1_4fb02")
 
-[node name="Stats" type="Node" parent="."]
-script = ExtResource("2_kawnm")
+[node name="Stats" parent="." instance=ExtResource("2_tvyju")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(4, 4)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -613,7 +614,7 @@ animation = &"Run_Side"
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_wsgxr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["Player"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rir1b")
 }
@@ -634,3 +635,10 @@ scale = Vector2(-0.6, 0.6)
 texture = ExtResource("6_6twh4")
 offset = Vector2(-4, -4)
 flip_h = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Treasure_Pickup" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("9_owaxd")
+max_polyphony = 3
+bus = &"SFX"

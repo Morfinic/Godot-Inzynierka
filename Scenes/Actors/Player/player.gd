@@ -24,7 +24,3 @@ func _physics_process(delta: float) -> void:
 
 	velocity = direction * SPEED
 	move_and_slide()
-
-
-func update_gold():
-	stats.gold += randi() % 9 + 5
