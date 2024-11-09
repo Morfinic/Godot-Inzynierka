@@ -83,8 +83,8 @@ func place_treasure():
 
 
 func place_enemies():
-	var enemy_amount = floor(map.size() / 30)
-	#var enemy_amount = 1
+	#var enemy_amount = floor(map.size() / 30)
+	var enemy_amount = 1
 
 	for i in enemy_amount:
 		var _spawn_tile = map.pick_random()

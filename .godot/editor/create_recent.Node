@@ -1,7 +1,8 @@
-NavigationAgent2D
 Timer
 CollisionShape2D
 Area2D
+RayCast2D
+NavigationAgent2D
 IdleState
 Node
 AnimationPlayer
@@ -11,4 +12,3 @@ AudioStreamPlayer
 Sprite2D
 Label
 Node2D
-Panel

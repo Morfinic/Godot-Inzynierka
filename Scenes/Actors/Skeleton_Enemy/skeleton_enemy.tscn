@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ccl4xqd5sml6o"]
+[gd_scene load_steps=28 format=3 uid="uid://ccl4xqd5sml6o"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.gd" id="1_dfgn7"]
 [ext_resource type="Texture2D" uid="uid://wy7s0ttcdk2s" path="res://Scenes/Actors/Skeleton_Enemy/Assets/skeleton_attack.png" id="1_qhfrr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://2org5kcgins4" path="res://Scenes/Actors/stats.tscn" id="4_wda7t"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/state_machine.gd" id="5_q7gt7"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/idle.gd" id="6_arwbr"]
+[ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/stun_timer.gd" id="6_xyj73"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/follow.gd" id="8_t4arp"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/attack_state.gd" id="9_a6p4p"]
 
@@ -90,6 +91,9 @@ size = Vector2(10, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2fa"]
 size = Vector2(192, 192)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7ug1"]
+size = Vector2(64, 64)
+
 [sub_resource type="Animation" id="Animation_v70mp"]
 length = 0.001
 tracks/0/type = "value"
@@ -115,6 +119,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack_Area/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_emgit"]
@@ -156,6 +172,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"calculate_state"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack_Area/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.766667, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_20b17"]
@@ -222,11 +250,14 @@ _data = {
 "run": SubResource("Animation_iba4x")
 }
 
-[node name="SkeletonEnemy" type="CharacterBody2D"]
-collision_layer = 0
+[node name="SkeletonEnemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
 script = ExtResource("1_dfgn7")
 
-[node name="Stats" parent="." instance=ExtResource("4_wda7t")]
+[node name="Stats" parent="." node_paths=PackedStringArray("stun_timer") instance=ExtResource("4_wda7t")]
+stun_timer = NodePath("../Stun_Timer")
+max_health = 20.0
+base_damage = 5.0
 
 [node name="Animated_Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1ewl")
@@ -243,6 +274,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Engage_Area"]
 shape = SubResource("RectangleShape2D_mo2fa")
 
+[node name="Attack_Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
+shape = SubResource("RectangleShape2D_x7ug1")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wvmwj")
@@ -253,7 +291,10 @@ target_desired_distance = 32.0
 navigation_layers = 4
 path_postprocessing = 1
 avoidance_layers = 0
-debug_enabled = true
+
+[node name="Stun_Timer" type="Timer" parent="."]
+process_mode = 3
+script = ExtResource("6_xyj73")
 
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("5_q7gt7")
@@ -267,9 +308,12 @@ self_charBody = NodePath("../..")
 script = ExtResource("8_t4arp")
 self_charBody = NodePath("../..")
 
-[node name="AttackState" type="Node" parent="State_Machine" node_paths=PackedStringArray("self_charBody")]
+[node name="AttackState" type="Node" parent="State_Machine" node_paths=PackedStringArray("self_charBody", "stats")]
 script = ExtResource("9_a6p4p")
 self_charBody = NodePath("../..")
+stats = NodePath("../../Stats")
 
 [connection signal="body_entered" from="Engage_Area" to="State_Machine/IdleState" method="_on_engage_area_body_entered"]
 [connection signal="body_exited" from="Engage_Area" to="State_Machine/FollowState" method="_on_engage_area_body_exited"]
+[connection signal="body_entered" from="Attack_Area" to="State_Machine/AttackState" method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="Stun_Timer" to="Stun_Timer" method="_on_timeout"]

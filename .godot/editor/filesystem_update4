@@ -4,8 +4,12 @@ res://Scenes/Game_Manager/Level_Generators/Walker/Walker_Level.tscn
 res://Scenes/Actors/Player/Player.tscn
 res://Scenes/Game_Manager/Game_Manager.tscn
 res://Scenes/Treausre/Treasure.tscn
-res://Scenes/Actors/Skeleton_Enemy/follow.gd
-res://Scenes/Game_Manager/Level_Generators/Walker/terrain.gd
-res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.gd
 res://Scenes/Actors/Skeleton_Enemy/idle.gd
+res://Scenes/Actors/stats.tscn
+res://Scenes/Actors/stats.gd
+res://Scenes/Actors/Player/weapon.gd
+res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.gd
+res://Scenes/Game_Manager/Level_Generators/Walker/terrain.gd
+res://Scenes/Actors/Player/player.gd
 res://Scenes/Actors/Skeleton_Enemy/attack_state.gd
+res://Scenes/Actors/Skeleton_Enemy/stun_timer.gd

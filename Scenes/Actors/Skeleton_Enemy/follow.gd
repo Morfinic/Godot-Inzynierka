@@ -25,6 +25,7 @@ func physics_update(_delta: float):
 
 	if next_path_pos == Vector2.ZERO or self_charBody.position.distance_to(next_path_pos) < 0.5:
 		next_path_pos = nav_agent.get_next_path_position()
+		#tutaj sygnal na atak
 	else:
 		if self_charBody.position.distance_to(player.position) < 32:
 			nav_agent.target_position = self_charBody.global_position
