@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://opgtdm6wstjx"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://opgtdm6wstjx"]
 
 [ext_resource type="FontFile" uid="uid://bsm7c4tvsb1do" path="res://Themes/Tiny5-Regular.ttf" id="1_vumv6"]
 
@@ -81,6 +81,21 @@ border_color = Color(1, 1, 1, 1)
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv6ej"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2c0pl"]
+bg_color = Color(1, 0.21268, 0.159696, 1)
+border_color = Color(0, 0, 0, 1)
+
 [resource]
 default_font = ExtResource("1_vumv6")
 default_font_size = 60
@@ -94,3 +109,6 @@ Button/styles/normal = SubResource("StyleBoxFlat_nwcos")
 Button/styles/pressed = SubResource("StyleBoxFlat_n156m")
 HSlider/styles/slider = SubResource("StyleBoxFlat_1vnf1")
 PopupMenu/font_sizes/font_size = 32
+ProgressBar/font_sizes/font_size = 32
+ProgressBar/styles/background = SubResource("StyleBoxFlat_gv6ej")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_2c0pl")

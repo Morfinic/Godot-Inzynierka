@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://do25iydep8121"]
+[gd_scene load_steps=12 format=3 uid="uid://do25iydep8121"]
 
 [ext_resource type="Script" path="res://Scenes/Game_Manager/pause_manager.gd" id="1_jnkjo"]
 [ext_resource type="PackedScene" uid="uid://d4m3fkhi3r0lg" path="res://Scenes/Main_Menu/Settings/Settings.tscn" id="2_xpio0"]
 [ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="3_bep1k"]
+[ext_resource type="Script" path="res://Scenes/Game_Manager/level_transition.gd" id="4_qys48"]
 [ext_resource type="Script" path="res://Scenes/Game_Manager/level_manager.gd" id="4_tbcna"]
-[ext_resource type="Script" path="res://Scenes/Game_Manager/run_stats.gd" id="4_ya052"]
-[ext_resource type="PackedScene" uid="uid://bl1w3iu7uk82q" path="res://Scenes/Game_Manager/Level_Generators/Walker/Walker_Level.tscn" id="5_acbb5"]
 [ext_resource type="PackedScene" uid="uid://bx8eedfpw8nh0" path="res://Scenes/Actors/Player/Player.tscn" id="7_0t5f8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp7cb"]
@@ -18,6 +17,81 @@ border_color = Color(0.8, 0.8, 0.8, 0.498039)
 
 [sub_resource type="Theme" id="Theme_8iquw"]
 Panel/styles/panel = SubResource("StyleBoxFlat_cp7cb")
+
+[sub_resource type="Animation" id="Animation_mwqt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jd7ba"]
+resource_name = "change_level"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Level_Manager")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"init_level"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_teogi"]
+_data = {
+"RESET": SubResource("Animation_mwqt7"),
+"change_level": SubResource("Animation_jd7ba")
+}
 
 [node name="GameManager" type="Node2D"]
 process_mode = 1
@@ -89,12 +163,26 @@ theme = ExtResource("3_bep1k")
 theme_override_font_sizes/font_size = 24
 text = "Return to menu"
 
+[node name="Level_Transition" type="CanvasLayer" parent="."]
+script = ExtResource("4_qys48")
+
+[node name="ColorRect" type="ColorRect" parent="Level_Transition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level_Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_teogi")
+}
+
 [node name="Level_Manager" type="Node2D" parent="."]
 script = ExtResource("4_tbcna")
-walker = ExtResource("5_acbb5")
-
-[node name="Run_Stats" type="Node" parent="Level_Manager"]
-script = ExtResource("4_ya052")
 
 [node name="Player" parent="Level_Manager" instance=ExtResource("7_0t5f8")]
 

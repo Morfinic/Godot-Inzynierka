@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c53pwmdcbqwmu" path="res://Assets/godot_inz_background.png" id="1_8wfed"]
 [ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="1_drt3c"]
 [ext_resource type="Script" path="res://Scenes/Main_Menu/Settings/settings.gd" id="1_id3p6"]
-[ext_resource type="Script" path="res://Scenes/Main_Menu/background.gd" id="2_tup3n"]
+[ext_resource type="Script" path="res://Scenes/Background/background.gd" id="2_tup3n"]
 [ext_resource type="AudioStream" uid="uid://ce4nvc2023fwb" path="res://Scenes/Main_Menu/Settings/Audio/arrow_shot.wav" id="4_8o6e3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vcu2f"]

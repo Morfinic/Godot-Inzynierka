@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if can_attack:
+	if can_attack and %Stats.health > 0:
 		if event.is_action_pressed("attack_left"):
 			weapon_anim_player.play("attack_left")
 		elif event.is_action_pressed("attack_right"):

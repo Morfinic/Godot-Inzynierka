@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Skeleton_Enemy
 
 
 var player_body: CharacterBody2D
@@ -7,6 +8,10 @@ var move_direction = Vector2.ZERO
 
 @export var move_speed = 35.0
 
+
+func with_data(_player) -> Skeleton_Enemy:
+	player_body = _player
+	return self
 
 func _ready() -> void:
 	$Stats.connect("death", _death)
@@ -18,4 +23,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _death():
+	RunStats.EnemiesKilled += 1
 	queue_free()

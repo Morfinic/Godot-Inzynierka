@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if can_walk:
+	if can_walk and %"Stats".health > 0:
 		var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 		if direction.y >= 0.5:
@@ -37,4 +37,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _death():
-	print("death")
+	if animation_player.is_playing():
+		animation_player.stop()
+	animation_player.play("death")
+
+
+func _death_screen():
+	SceneChangerAnim.change_scene(Resources.death_screen)

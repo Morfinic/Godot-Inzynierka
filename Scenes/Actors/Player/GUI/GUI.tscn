@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7bkr7w36bbsy"]
+
+[ext_resource type="Script" path="res://Scenes/Actors/Player/GUI/gui.gd" id="1_3kqcl"]
+[ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="1_jnlx8"]
+[ext_resource type="Texture2D" uid="uid://03id6tq2s5pk" path="res://Assets/Coins/Coins.png" id="2_4luiv"]
+
+[node name="Gui" type="CanvasLayer"]
+script = ExtResource("1_3kqcl")
+
+[node name="Main_Container" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_Container" type="HBoxContainer" parent="Main_Container"]
+layout_mode = 2
+
+[node name="GUI" type="VBoxContainer" parent="Main_Container/GUI_Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Main_Container/GUI_Container/GUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_Container/GUI_Container/GUI/MarginContainer"]
+layout_mode = 2
+
+[node name="Health_Bar" type="ProgressBar" parent="Main_Container/GUI_Container/GUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_jnlx8")
+value = 100.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_Container/GUI_Container/GUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main_Container/GUI_Container/GUI/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_4luiv")
+expand_mode = 2
+
+[node name="Gold" type="Label" parent="Main_Container/GUI_Container/GUI/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jnlx8")
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+
+[node name="Filler" type="VBoxContainer" parent="Main_Container/GUI_Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0

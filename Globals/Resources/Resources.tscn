@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3urdooghdhnp"]
+
+[ext_resource type="Script" path="res://Globals/Resources/Resources.gd" id="1_g7hoj"]
+[ext_resource type="PackedScene" uid="uid://6a33rf2ypejt" path="res://Scenes/Main_Menu/MainMenu.tscn" id="2_7o7ka"]
+[ext_resource type="PackedScene" uid="uid://d4m3fkhi3r0lg" path="res://Scenes/Main_Menu/Settings/Settings.tscn" id="3_w1pce"]
+[ext_resource type="PackedScene" uid="uid://bv8qfieqkufsh" path="res://Scenes/Death/Death_Screen.tscn" id="4_1e72d"]
+[ext_resource type="PackedScene" uid="uid://do25iydep8121" path="res://Scenes/Game_Manager/Game_Manager.tscn" id="5_whbsg"]
+[ext_resource type="PackedScene" uid="uid://bl1w3iu7uk82q" path="res://Scenes/Game_Manager/Level_Generators/Walker/Walker_Level.tscn" id="6_tjdsw"]
+
+[node name="Resources" type="Node"]
+script = ExtResource("1_g7hoj")
+main_menu = ExtResource("2_7o7ka")
+settings_menu = ExtResource("3_w1pce")
+death_screen = ExtResource("4_1e72d")
+level_manager = ExtResource("5_whbsg")
+walker_level = ExtResource("6_tjdsw")

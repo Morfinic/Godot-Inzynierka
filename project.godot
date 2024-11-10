@@ -23,6 +23,10 @@ buses/default_bus_layout="res://Audio_Bus_Layout.tres"
 [autoload]
 
 GameSettings="*res://Globals/game_settings.gd"
+Utils="*res://Globals/Utils.gd"
+RunStats="*res://Globals/Run_Stats.gd"
+SceneChangerAnim="*res://Globals/Scene_Changer/scene_changer_anim.tscn"
+Resources="*res://Globals/Resources/Resources.tscn"
 
 [display]
 

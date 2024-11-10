@@ -4,7 +4,7 @@ class_name FollowState
 
 @export var self_charBody: CharacterBody2D
 @onready var player: CharacterBody2D = self_charBody.player_body
-@onready var nav_agent: NavigationAgent2D = $"../../NavigationAgent2D"
+@onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 var next_path_pos
 
 

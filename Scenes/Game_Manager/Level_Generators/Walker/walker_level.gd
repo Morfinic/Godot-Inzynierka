@@ -1,7 +1,11 @@
 extends Node2D
+class_name Walker_Level
 
 
 @onready var floor_tilemap: TileMapLayer = $Terrain/Level
+@onready var background: TileMapLayer = $Terrain/Background
+@onready var treasure_holder: Node2D = $Treasure_Holder
+@onready var enemies_holder: Node2D = $Enemies_Holder
 
 
 @export var exit: PackedScene
@@ -9,13 +13,21 @@ extends Node2D
 @export var enemy: PackedScene
 
 
-var starting_position := Vector2(18, 9)
-var borders := Rect2(1, 1, 38, 20)
+var starting_position: Vector2
+var borders: Rect2
 var map: Array
 var player: CharacterBody2D
 
 
+func with_data(_starting_position, _borders, _player) -> Walker_Level:
+	starting_position = _starting_position
+	borders = _borders
+	player = _player
+	return self
+
+
 func _ready() -> void:
+	background.set_size(borders.size)
 	generate_level()
 	place_player()
 	place_exit()
@@ -34,8 +46,12 @@ func generate_level():
 
 
 func place_player():
-	var _spawn_tile = map[0]
-	map.erase(_spawn_tile)
+	var _spawn_tile = map.pick_random()
+	var del_tiles = Utils.get_surrounding_tile_area(
+		_spawn_tile, floor_tilemap, 5
+	)
+	for tile in del_tiles:
+		map.erase(tile)
 
 	var player_spawn_position = Vector2(
 		_spawn_tile.x * 32 + 16,
@@ -47,8 +63,12 @@ func place_player():
 
 func place_exit():
 	var exit_node = exit.instantiate()
-	var _spawn_tile = map[-1]
-	map.erase(_spawn_tile)
+	var _spawn_tile = map.pick_random()
+	var del_tiles = Utils.get_surrounding_tile_area(
+		_spawn_tile, floor_tilemap, 2
+	)
+	for tile in del_tiles:
+		map.erase(tile)
 
 	var exit_position = Vector2(
 		_spawn_tile.x * 32 + 16,
@@ -70,7 +90,11 @@ func place_treasure():
 
 	for i in treasure_amount:
 		var _spawn_tile = map.pick_random()
-		map.erase(_spawn_tile)
+		var del_tiles = Utils.get_surrounding_tile_area(
+			_spawn_tile, floor_tilemap, 2
+		)
+		for tile in del_tiles:
+			map.erase(tile)
 
 		var treasure_position = Vector2(
 			_spawn_tile.x * 32 + 16,
@@ -79,23 +103,26 @@ func place_treasure():
 
 		var treasure_node = treasure.instantiate()
 		treasure_node.position = treasure_position
-		add_child(treasure_node)
+		treasure_holder.add_child(treasure_node)
 
 
 func place_enemies():
-	#var enemy_amount = floor(map.size() / 30)
-	var enemy_amount = 1
+	var enemy_amount = floor(map.size() / 20)
+	#var enemy_amount = 1
 
 	for i in enemy_amount:
 		var _spawn_tile = map.pick_random()
-		map.erase(_spawn_tile)
+		var del_tiles = Utils.get_surrounding_tile_area(
+			_spawn_tile, floor_tilemap, 4
+		)
+		for tile in del_tiles:
+			map.erase(tile)
 
 		var enemy_position = Vector2(
 			_spawn_tile.x * 32 + 16,
 			_spawn_tile.y * 32 + 16
 		)
 
-		var enemy_node = enemy.instantiate()
+		var enemy_node = enemy.instantiate().with_data(player)
 		enemy_node.position = enemy_position
-		enemy_node.player_body = player
-		add_child(enemy_node)
+		enemies_holder.add_child(enemy_node)

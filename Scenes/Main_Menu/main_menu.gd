@@ -1,16 +1,16 @@
 extends Control
 
 
-@export var settings_scene: PackedScene
-@export var game_manager: PackedScene
+func _ready() -> void:
+	$Background.set_size(Vector2(42, 24))
 
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(game_manager)
+	SceneChangerAnim.change_scene(Resources.level_manager)
 
 
 func _on_settings_pressed() -> void:
-	var sett_scene = settings_scene.instantiate()
+	var sett_scene = Resources.settings_menu.instantiate()
 	get_tree().paused = true
 	add_child(sett_scene)
 

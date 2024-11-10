@@ -24,5 +24,5 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 
 
 func _treasure_collected(body):
-	body.stats.update_gold()
+	RunStats.update_gold()
 	queue_free()

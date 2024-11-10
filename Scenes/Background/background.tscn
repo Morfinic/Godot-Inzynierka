@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu5jlhe8usdkc"]
+
+[ext_resource type="Texture2D" uid="uid://c53pwmdcbqwmu" path="res://Assets/godot_inz_background.png" id="1_8wyw7"]
+[ext_resource type="Script" path="res://Scenes/Background/background.gd" id="2_obfr2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wbi47"]
+texture = ExtResource("1_8wyw7")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:2/size_in_atlas = Vector2i(2, 2)
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/bottom_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:4/size_in_atlas = Vector2i(2, 2)
+0:4/0 = 0
+0:4/0/terrain_set = 0
+0:4/0/terrain = 0
+0:4/0/terrains_peering_bit/right_side = 0
+0:4/0/terrains_peering_bit/top_side = 0
+2:4/size_in_atlas = Vector2i(2, 2)
+2:4/0 = 0
+2:4/0/terrain_set = 0
+2:4/0/terrain = 0
+2:4/0/terrains_peering_bit/right_side = 0
+2:4/0/terrains_peering_bit/left_side = 0
+2:4/0/terrains_peering_bit/top_side = 0
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/probability = 0.08
+2:2/0/terrains_peering_bit/right_side = 0
+2:2/0/terrains_peering_bit/bottom_side = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_side = 0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+4:0/0/terrains_peering_bit/bottom_side = 0
+4:0/0/terrains_peering_bit/left_side = 0
+4:2/size_in_atlas = Vector2i(2, 2)
+4:2/0 = 0
+4:2/0/terrain_set = 0
+4:2/0/terrain = 0
+4:2/0/terrains_peering_bit/bottom_side = 0
+4:2/0/terrains_peering_bit/left_side = 0
+4:2/0/terrains_peering_bit/top_side = 0
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+4:4/0/terrain_set = 0
+4:4/0/terrain = 0
+4:4/0/terrains_peering_bit/left_side = 0
+4:4/0/terrains_peering_bit/top_side = 0
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+6:0/0/terrain_set = 0
+6:0/0/terrain = 0
+6:0/0/terrains_peering_bit/right_side = 0
+6:0/0/terrains_peering_bit/bottom_side = 0
+6:0/0/terrains_peering_bit/left_side = 0
+6:0/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_x8phg"]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Background 0"
+terrain_set_0/terrain_0/color = Color(1, 1, 1, 1)
+sources/0 = SubResource("TileSetAtlasSource_wbi47")
+
+[node name="Background" type="TileMapLayer"]
+tile_set = SubResource("TileSet_x8phg")
+script = ExtResource("2_obfr2")
