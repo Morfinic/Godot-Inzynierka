@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://ccl4xqd5sml6o"]
+[gd_scene load_steps=33 format=3 uid="uid://ccl4xqd5sml6o"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.gd" id="1_dfgn7"]
 [ext_resource type="Texture2D" uid="uid://wy7s0ttcdk2s" path="res://Scenes/Actors/Skeleton_Enemy/Assets/skeleton_attack.png" id="1_qhfrr"]
 [ext_resource type="Texture2D" uid="uid://b5hdpslalwdh3" path="res://Scenes/Actors/Skeleton_Enemy/Assets/skeleton_idle.png" id="2_lf12d"]
 [ext_resource type="Texture2D" uid="uid://dwcpfe7gvo6tb" path="res://Scenes/Actors/Skeleton_Enemy/Assets/skeleton_run.png" id="3_n3xsi"]
+[ext_resource type="Texture2D" uid="uid://rw3u63xhanbt" path="res://Scenes/Actors/Skeleton_Enemy/Assets/skeleton_death.png" id="4_42jwq"]
 [ext_resource type="PackedScene" uid="uid://2org5kcgins4" path="res://Scenes/Actors/stats.tscn" id="4_wda7t"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/state_machine.gd" id="5_q7gt7"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/idle.gd" id="6_arwbr"]
@@ -26,6 +27,18 @@ region = Rect2(30, 0, 15, 29)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u3bw"]
 atlas = ExtResource("1_qhfrr")
 region = Rect2(45, 0, 15, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiv45"]
+atlas = ExtResource("4_42jwq")
+region = Rect2(0, 0, 15, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i15w"]
+atlas = ExtResource("4_42jwq")
+region = Rect2(15, 0, 15, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6s42"]
+atlas = ExtResource("4_42jwq")
+region = Rect2(30, 0, 15, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kbpf"]
 atlas = ExtResource("2_lf12d")
@@ -60,6 +73,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiv45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i15w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6s42")
+}],
+"loop": true,
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -242,10 +269,54 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_tqeyy"]
+resource_name = "death"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animated_Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Animated_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_death_anim"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wvmwj"]
 _data = {
 "RESET": SubResource("Animation_v70mp"),
 "attack": SubResource("Animation_emgit"),
+"death": SubResource("Animation_tqeyy"),
 "idle": SubResource("Animation_20b17"),
 "run": SubResource("Animation_iba4x")
 }

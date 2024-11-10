@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cu5jlhe8usdkc"]
 
-[ext_resource type="Texture2D" uid="uid://c53pwmdcbqwmu" path="res://Assets/godot_inz_background.png" id="1_8wyw7"]
+[ext_resource type="Texture2D" uid="uid://c53pwmdcbqwmu" path="res://Assets/Graphics/godot_inz_background.png" id="1_8wyw7"]
 [ext_resource type="Script" path="res://Scenes/Background/background.gd" id="2_obfr2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wbi47"]

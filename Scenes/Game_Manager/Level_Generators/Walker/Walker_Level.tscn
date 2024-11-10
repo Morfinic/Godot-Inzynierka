@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/Game_Manager/Level_Generators/Walker/walker_level.gd" id="1_xroo3"]
 [ext_resource type="PackedScene" uid="uid://c2f251vwx2led" path="res://Scenes/Exit/Exit.tscn" id="2_2ycnl"]
-[ext_resource type="PackedScene" uid="uid://dlsox1gb4ljat" path="res://Scenes/Treausre/Treasure.tscn" id="3_hbc65"]
-[ext_resource type="Texture2D" uid="uid://wmv7lt7lkwhn" path="res://Assets/level_tileset.png" id="3_yc8is"]
+[ext_resource type="PackedScene" uid="uid://dlsox1gb4ljat" path="res://Scenes/Treasure/Treasure.tscn" id="3_hbc65"]
+[ext_resource type="Texture2D" uid="uid://wmv7lt7lkwhn" path="res://Assets/Graphics/level_tileset.png" id="3_yc8is"]
 [ext_resource type="PackedScene" uid="uid://ccl4xqd5sml6o" path="res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.tscn" id="4_l6pdv"]
 [ext_resource type="PackedScene" uid="uid://cu5jlhe8usdkc" path="res://Scenes/Background/background.tscn" id="5_7hmlv"]
 

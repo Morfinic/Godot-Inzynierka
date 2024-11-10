@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfoixetsh8nbc"]
+
+[ext_resource type="AudioStream" uid="uid://b63bjfa8h3tai" path="res://Assets/Audio/background_noise.mp3" id="1_0nlcg"]
+
+[node name="Background_Noise" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_0nlcg")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

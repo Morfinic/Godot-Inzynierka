@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2f251vwx2led"]
 
-[ext_resource type="Texture2D" uid="uid://bd5dei1e7jw6f" path="res://Assets/Exit/Exit.png" id="1_4quq4"]
+[ext_resource type="Texture2D" uid="uid://bd5dei1e7jw6f" path="res://Assets/Graphics/Exit.png" id="1_4quq4"]
 [ext_resource type="Script" path="res://Scenes/Exit/exit.gd" id="2_h5qgc"]
 [ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="3_xh32c"]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player/GUI/gui.gd" id="1_3kqcl"]
 [ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="1_jnlx8"]
-[ext_resource type="Texture2D" uid="uid://03id6tq2s5pk" path="res://Assets/Coins/Coins.png" id="2_4luiv"]
+[ext_resource type="Texture2D" uid="uid://03id6tq2s5pk" path="res://Assets/Graphics/Coins.png" id="2_4luiv"]
 
 [node name="Gui" type="CanvasLayer"]
 script = ExtResource("1_3kqcl")

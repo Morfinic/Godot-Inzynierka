@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://do25iydep8121"]
+[gd_scene load_steps=11 format=3 uid="uid://do25iydep8121"]
 
 [ext_resource type="Script" path="res://Scenes/Game_Manager/pause_manager.gd" id="1_jnkjo"]
-[ext_resource type="PackedScene" uid="uid://d4m3fkhi3r0lg" path="res://Scenes/Main_Menu/Settings/Settings.tscn" id="2_xpio0"]
 [ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="3_bep1k"]
 [ext_resource type="Script" path="res://Scenes/Game_Manager/level_transition.gd" id="4_qys48"]
 [ext_resource type="Script" path="res://Scenes/Game_Manager/level_manager.gd" id="4_tbcna"]
@@ -96,41 +95,23 @@ _data = {
 [node name="GameManager" type="Node2D"]
 process_mode = 1
 
-[node name="Pause_Manager" type="Node" parent="."]
+[node name="Pause_Manger" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("1_jnkjo")
-settings_menu = ExtResource("2_xpio0")
 
-[node name="Pause_Menu" type="Control" parent="Pause_Manager"]
-visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="Pause_Container" type="CenterContainer" parent="Pause_Manger"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.474107, 0.474107)
-size_flags_horizontal = 3
-size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="Panel" parent="Pause_Manager/Pause_Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = -80.0
-offset_right = 136.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ColorRect" type="Panel" parent="Pause_Manger/Pause_Container"]
+layout_mode = 2
 theme = SubResource("Theme_8iquw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Manager/Pause_Menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Manger/Pause_Container/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -138,29 +119,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = -70.0
+offset_top = -70.5
 offset_right = 128.0
-offset_bottom = 71.0
+offset_bottom = 70.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
 
-[node name="Resume" type="Button" parent="Pause_Manager/Pause_Menu/VBoxContainer"]
+[node name="Resume" type="Button" parent="Pause_Manger/Pause_Container/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_bep1k")
-theme_override_font_sizes/font_size = 24
 text = "Resume"
 
-[node name="Settings" type="Button" parent="Pause_Manager/Pause_Menu/VBoxContainer"]
+[node name="Settings" type="Button" parent="Pause_Manger/Pause_Container/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_bep1k")
-theme_override_font_sizes/font_size = 24
 text = "Settings"
 
-[node name="Return_To_Menu" type="Button" parent="Pause_Manager/Pause_Menu/VBoxContainer"]
+[node name="Return_To_Menu" type="Button" parent="Pause_Manger/Pause_Container/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_bep1k")
-theme_override_font_sizes/font_size = 24
 text = "Return to menu"
 
 [node name="Level_Transition" type="CanvasLayer" parent="."]
@@ -186,7 +164,7 @@ script = ExtResource("4_tbcna")
 
 [node name="Player" parent="Level_Manager" instance=ExtResource("7_0t5f8")]
 
-[connection signal="pressed" from="Pause_Manager/Pause_Menu/VBoxContainer/Resume" to="Pause_Manager" method="_on_resume_pressed"]
-[connection signal="pressed" from="Pause_Manager/Pause_Menu/VBoxContainer/Settings" to="Pause_Manager" method="_on_settings_pressed"]
-[connection signal="pressed" from="Pause_Manager/Pause_Menu/VBoxContainer/Return_To_Menu" to="Pause_Manager" method="_on_return_to_menu_pressed"]
+[connection signal="pressed" from="Pause_Manger/Pause_Container/ColorRect/VBoxContainer/Resume" to="Pause_Manger" method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause_Manger/Pause_Container/ColorRect/VBoxContainer/Settings" to="Pause_Manger" method="_on_settings_pressed"]
+[connection signal="pressed" from="Pause_Manger/Pause_Container/ColorRect/VBoxContainer/Return_To_Menu" to="Pause_Manger" method="_on_return_to_menu_pressed"]
 [connection signal="child_exiting_tree" from="Level_Manager" to="Level_Manager" method="_on_level_manager_child_exiting_tree"]

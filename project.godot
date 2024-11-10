@@ -27,6 +27,7 @@ Utils="*res://Globals/Utils.gd"
 RunStats="*res://Globals/Run_Stats.gd"
 SceneChangerAnim="*res://Globals/Scene_Changer/scene_changer_anim.tscn"
 Resources="*res://Globals/Resources/Resources.tscn"
+BackgroundNoise="res://Globals/background_noise.tscn"
 
 [display]
 

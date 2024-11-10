@@ -17,6 +17,7 @@ func _ready() -> void:
 	$Stats.connect("death", _death)
 	$Attack_Area/CollisionShape2D.disabled = true
 
+
 func _physics_process(delta: float) -> void:
 	velocity = move_direction * move_speed
 	move_and_slide()
@@ -24,4 +25,9 @@ func _physics_process(delta: float) -> void:
 
 func _death():
 	RunStats.EnemiesKilled += 1
+	if $AnimationPlayer.is_playing():
+		$AnimationPlayer.stop()
+	$AnimationPlayer.play("death")
+
+func _death_anim():
 	queue_free()

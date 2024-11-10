@@ -70,7 +70,7 @@ func set_audio(audio_val, bus_idx):
 func _on_sfx_test_button_pressed() -> void:
 	toggle_testButton_disable()
 	if !audio_player.playing:
-		audio_player.set_stream(load("res://Scenes/Main_Menu/Settings/Audio/arrow_shot.wav"))
+		audio_player.set_stream(Resources.coin_pickup)
 		audio_player.bus = "SFX"
 		audio_player.play()
 
