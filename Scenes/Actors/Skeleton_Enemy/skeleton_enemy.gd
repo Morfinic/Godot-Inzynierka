@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _death():
+	$Terrain_Collision.disabled = true
 	RunStats.EnemiesKilled += 1
 	if $AnimationPlayer.is_playing():
 		$AnimationPlayer.stop()

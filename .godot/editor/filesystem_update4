@@ -1,4 +1,9 @@
-res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.tscn
-res://Themes/menu.tres
-res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.gd
 res://Globals/Resources/Resources.tscn
+res://Themes/menu.tres
+res://Globals/Resources/Resources.gd
+res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.tscn
+res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.gd
+res://Scenes/Actors/Player/Player.tscn
+res://Scenes/Actors/Player/weapon.gd
+res://Scenes/Actors/stats.gd
+res://Scenes/Actors/Player/audio.gd

@@ -1,13 +1,13 @@
+AudioStreamPlayer
+Node
 CanvasLayer
 Control
 CenterContainer
-AudioStreamPlayer
 MarginContainer
 Label
 HBoxContainer
 AnimationPlayer
 ColorRect
-Node
 VBoxContainer
 Panel
 Button

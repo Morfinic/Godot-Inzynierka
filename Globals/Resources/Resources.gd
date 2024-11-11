@@ -14,3 +14,6 @@ extends Node
 @export_category("Audio")
 @export var coin_pickup: AudioStreamMP3
 @export var background_noise: AudioStreamMP3
+@export var bone_break: AudioStreamMP3
+@export var bone_crack: AudioStreamMP3
+@export var pain_noises: Array[AudioStreamMP3]

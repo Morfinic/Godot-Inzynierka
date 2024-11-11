@@ -12,6 +12,7 @@ signal increased_max_health(health)
 @export var max_health: float
 @export var base_damage: float
 @export var damage_modifier: float
+@export var hurt_sound_player: AudioStreamPlayer
 
 
 @onready var health: float = max_health
@@ -32,6 +33,9 @@ func update_damage():
 func take_damage(_damage):
 	health -= _damage
 	took_damage.emit(health)
+
+	if health > 0 and hurt_sound_player.playing == false:
+		hurt_sound_player.play()
 
 	if health <= 0:
 		death.emit()
