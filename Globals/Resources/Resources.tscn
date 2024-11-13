@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bwivtg8kk7ak5" path="res://Assets/Audio/coin_pickup.mp3" id="7_fo472"]
 [ext_resource type="AudioStream" uid="uid://b63bjfa8h3tai" path="res://Assets/Audio/background_noise.mp3" id="8_4ydtg"]
 [ext_resource type="AudioStream" uid="uid://cl3txsml7khha" path="res://Assets/Audio/bone_break.mp3" id="9_ar5q2"]
-[ext_resource type="AudioStream" uid="uid://cuib8u6yoj3rg" path="res://Assets/Audio/bone_crack.mp3" id="10_3vnbr"]
+[ext_resource type="AudioStream" uid="uid://byi0ja7tgkbac" path="res://Assets/Audio/bone_crack2.mp3" id="10_4s48v"]
 [ext_resource type="AudioStream" uid="uid://xj53yiqihtts" path="res://Assets/Audio/pain_noise_1.mp3" id="11_twokm"]
 [ext_resource type="AudioStream" uid="uid://mgj3b6b5itl1" path="res://Assets/Audio/pain_noise_2.mp3" id="12_5njuk"]
 [ext_resource type="AudioStream" uid="uid://d28la1lx3ej3r" path="res://Assets/Audio/pain_noise_3.mp3" id="13_bj6ax"]
@@ -25,5 +25,5 @@ walker_level = ExtResource("6_tjdsw")
 coin_pickup = ExtResource("7_fo472")
 background_noise = ExtResource("8_4ydtg")
 bone_break = ExtResource("9_ar5q2")
-bone_crack = ExtResource("10_3vnbr")
+bone_crack = ExtResource("10_4s48v")
 pain_noises = Array[AudioStreamMP3]([ExtResource("11_twokm"), ExtResource("12_5njuk"), ExtResource("13_bj6ax"), ExtResource("14_f4ufd")])

@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/follow.gd" id="8_t4arp"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/attack_state.gd" id="9_a6p4p"]
 [ext_resource type="AudioStream" uid="uid://cl3txsml7khha" path="res://Assets/Audio/bone_break.mp3" id="12_bdqar"]
-[ext_resource type="AudioStream" uid="uid://cuib8u6yoj3rg" path="res://Assets/Audio/bone_crack.mp3" id="13_uft2b"]
+[ext_resource type="AudioStream" uid="uid://byi0ja7tgkbac" path="res://Assets/Audio/bone_crack2.mp3" id="13_jvje1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lii23"]
 atlas = ExtResource("1_qhfrr")
@@ -407,7 +407,7 @@ stream = ExtResource("12_bdqar")
 
 [node name="Hurt_Sound" type="AudioStreamPlayer" parent="Audio"]
 process_mode = 3
-stream = ExtResource("13_uft2b")
+stream = ExtResource("13_jvje1")
 
 [connection signal="body_entered" from="Engage_Area" to="State_Machine/IdleState" method="_on_engage_area_body_entered"]
 [connection signal="body_exited" from="Engage_Area" to="State_Machine/FollowState" method="_on_engage_area_body_exited"]
