@@ -1,3 +1,4 @@
+res://Assets
 res://Scenes/Actors/Skeleton_Enemy/Assets
 res://Scenes/Game_Manager
 res://Globals
@@ -8,7 +9,6 @@ res://Globals/Scene_Changer
 res://Scenes/Game_Manager/Level_Generators/Walker
 res://Scenes/Background
 res://Scenes/Actors
-res://Assets
 res://Scenes/Main_Menu
 C:/Users/Morfinix/Documents/Programieren/Godot/inzynierka-projekt
 res://

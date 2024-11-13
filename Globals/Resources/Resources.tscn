@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3urdooghdhnp"]
+[gd_scene load_steps=16 format=3 uid="uid://d3urdooghdhnp"]
 
 [ext_resource type="Script" path="res://Globals/Resources/Resources.gd" id="1_g7hoj"]
 [ext_resource type="PackedScene" uid="uid://6a33rf2ypejt" path="res://Scenes/Main_Menu/MainMenu.tscn" id="2_7o7ka"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://do25iydep8121" path="res://Scenes/Game_Manager/Game_Manager.tscn" id="5_whbsg"]
 [ext_resource type="PackedScene" uid="uid://bl1w3iu7uk82q" path="res://Scenes/Game_Manager/Level_Generators/Walker/Walker_Level.tscn" id="6_tjdsw"]
 [ext_resource type="AudioStream" uid="uid://bwivtg8kk7ak5" path="res://Assets/Audio/coin_pickup.mp3" id="7_fo472"]
+[ext_resource type="PackedScene" uid="uid://ckoowfok1w3qo" path="res://Scenes/Game_Manager/Level_Generators/Walker_Room/Walker_Room_Level.tscn" id="7_xcgfi"]
 [ext_resource type="AudioStream" uid="uid://b63bjfa8h3tai" path="res://Assets/Audio/background_noise.mp3" id="8_4ydtg"]
 [ext_resource type="AudioStream" uid="uid://cl3txsml7khha" path="res://Assets/Audio/bone_break.mp3" id="9_ar5q2"]
 [ext_resource type="AudioStream" uid="uid://byi0ja7tgkbac" path="res://Assets/Audio/bone_crack2.mp3" id="10_4s48v"]
@@ -22,6 +23,7 @@ settings_menu = ExtResource("3_w1pce")
 death_screen = ExtResource("4_1e72d")
 level_manager = ExtResource("5_whbsg")
 walker_level = ExtResource("6_tjdsw")
+walker_room_level = ExtResource("7_xcgfi")
 coin_pickup = ExtResource("7_fo472")
 background_noise = ExtResource("8_4ydtg")
 bone_break = ExtResource("9_ar5q2")

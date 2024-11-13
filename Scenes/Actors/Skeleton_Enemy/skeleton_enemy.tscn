@@ -404,10 +404,12 @@ stats = NodePath("../../Stats")
 
 [node name="Death_Sound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_bdqar")
+bus = &"SFX"
 
 [node name="Hurt_Sound" type="AudioStreamPlayer" parent="Audio"]
 process_mode = 3
 stream = ExtResource("13_jvje1")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Engage_Area" to="State_Machine/IdleState" method="_on_engage_area_body_entered"]
 [connection signal="body_exited" from="Engage_Area" to="State_Machine/FollowState" method="_on_engage_area_body_exited"]

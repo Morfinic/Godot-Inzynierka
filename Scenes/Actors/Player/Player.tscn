@@ -1345,6 +1345,7 @@ base_damage = 10.0
 hurt_sound_player = NodePath("../Audio/Hurt_Sound")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(4, 4)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -1402,9 +1403,12 @@ bus = &"SFX"
 
 [node name="Sword_Swing" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("13_ath5b")
+bus = &"SFX"
 
 [node name="Hurt_Sound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("14_pwvsd")
+bus = &"SFX"
 
 [node name="Death_Sound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("15_cku0f")
+bus = &"SFX"

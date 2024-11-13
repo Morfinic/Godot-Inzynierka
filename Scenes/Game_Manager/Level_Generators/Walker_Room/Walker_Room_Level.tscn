@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckoowfok1w3qo"]
+
+[ext_resource type="Script" path="res://Scenes/Game_Manager/Level_Generators/Walker_Room/walker_room_level.gd" id="1_7g0nc"]
+[ext_resource type="PackedScene" uid="uid://cu5jlhe8usdkc" path="res://Scenes/Background/background.tscn" id="1_ot8r6"]
+[ext_resource type="PackedScene" uid="uid://c2f251vwx2led" path="res://Scenes/Exit/Exit.tscn" id="2_iwjat"]
+[ext_resource type="PackedScene" uid="uid://dlsox1gb4ljat" path="res://Scenes/Treasure/Treasure.tscn" id="3_bchsy"]
+[ext_resource type="TileSet" uid="uid://bp6smkbjkuwan" path="res://Assets/Level_Tilemap.tres" id="3_jbig5"]
+[ext_resource type="PackedScene" uid="uid://ccl4xqd5sml6o" path="res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.tscn" id="4_l5df1"]
+
+[node name="Walker_Room_Level" type="Node2D"]
+script = ExtResource("1_7g0nc")
+exit = ExtResource("2_iwjat")
+treasure = ExtResource("3_bchsy")
+enemy = ExtResource("4_l5df1")
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Background" parent="Terrain" instance=ExtResource("1_ot8r6")]
+
+[node name="Terrain" type="TileMapLayer" parent="Terrain"]
+tile_set = ExtResource("3_jbig5")
+
+[node name="Terrain_PathFinder" type="NavigationAgent2D" parent="Terrain/Terrain"]
+path_desired_distance = 0.1
+navigation_layers = 4
+path_postprocessing = 1
+
+[node name="Treasure_Holder" type="Node2D" parent="."]
+
+[node name="Enemies_Holder" type="Node2D" parent="."]

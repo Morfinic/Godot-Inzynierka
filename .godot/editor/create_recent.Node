@@ -1,5 +1,8 @@
-AudioStreamPlayer
+NavigationAgent2D
+Node2D
 Node
+TileMapLayer
+AudioStreamPlayer
 CanvasLayer
 Control
 CenterContainer
@@ -9,6 +12,3 @@ HBoxContainer
 AnimationPlayer
 ColorRect
 VBoxContainer
-Panel
-Button
-TextureRect

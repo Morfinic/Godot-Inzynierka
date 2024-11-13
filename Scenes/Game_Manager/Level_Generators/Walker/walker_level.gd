@@ -6,6 +6,7 @@ class_name Walker_Level
 @onready var background: TileMapLayer = $Terrain/Background
 @onready var treasure_holder: Node2D = $Treasure_Holder
 @onready var enemies_holder: Node2D = $Enemies_Holder
+@onready var exit_finder: NavigationAgent2D = $Terrain/Level/Exit_Finder
 
 
 @export var exit: PackedScene
@@ -36,8 +37,9 @@ func _ready() -> void:
 
 func generate_level():
 	var walker = Walker.new(starting_position, borders)
+	var steps_amount = floor((borders.size.x * borders.size.y) * 0.75)
 
-	map = walker.walk(750)
+	map = walker.walk(steps_amount)
 	walker.queue_free()
 
 	floor_tilemap.set_cells_terrain_connect(
@@ -46,7 +48,7 @@ func generate_level():
 
 
 func place_player():
-	var _spawn_tile = map.pick_random()
+	var _spawn_tile = starting_position
 	var del_tiles = Utils.get_surrounding_tile_area(
 		_spawn_tile, floor_tilemap, 5
 	)
@@ -63,7 +65,12 @@ func place_player():
 
 func place_exit():
 	var exit_node = exit.instantiate()
-	var _spawn_tile = map.pick_random()
+
+	var tmp_map = map.duplicate()
+	tmp_map.shuffle()
+	var exit_options = tmp_map.slice(0, 10)
+	var _spawn_tile = find_exit_position(exit_options)
+
 	var del_tiles = Utils.get_surrounding_tile_area(
 		_spawn_tile, floor_tilemap, 2
 	)
@@ -83,6 +90,24 @@ func place_exit():
 
 func finish_level():
 	queue_free()
+
+
+func find_exit_position(exit_options):
+	var first_pos = exit_options.pop_front()
+	var exit_position = first_pos
+	var player_spawn = player.position
+
+	for option in exit_options:
+		exit_finder.target_position = exit_position
+		var distance_to_current_exit = exit_finder.distance_to_target()
+
+		exit_finder.target_position = option
+		var distance_to_new_exit = exit_finder.distance_to_target()
+
+		if distance_to_new_exit > distance_to_current_exit:
+			exit_position = option
+
+	return exit_position
 
 
 func place_treasure():
