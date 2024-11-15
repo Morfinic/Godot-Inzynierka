@@ -16,6 +16,7 @@ var idle_cooldown: float
 func _ready() -> void:
 	tmp_move_options = move_options.duplicate()
 	tmp_move_options.shuffle()
+	$"../../Stats".stun_state.connect(_switch_to_Stun)
 
 
 func random_wander():
@@ -57,7 +58,7 @@ func physics_update(_delta: float):
 	if self_charBody.get_slide_collision_count():
 		tmp_move_options.erase(move_direction)
 
-		self_charBody.position += move_direction * -2
+		self_charBody.position += move_direction * -5
 
 		random_wander()
 
@@ -67,3 +68,7 @@ func physics_update(_delta: float):
 func _on_engage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		change_state.emit(self, "followstate")
+
+
+func _switch_to_Stun():
+	change_state.emit(self, "stunstate")

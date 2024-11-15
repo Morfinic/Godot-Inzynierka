@@ -1,7 +1,8 @@
 NavigationAgent2D
 Node2D
-Node
 TileMapLayer
+Timer
+Node
 AudioStreamPlayer
 CanvasLayer
 Control
@@ -11,4 +12,3 @@ Label
 HBoxContainer
 AnimationPlayer
 ColorRect
-VBoxContainer

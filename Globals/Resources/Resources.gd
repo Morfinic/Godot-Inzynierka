@@ -10,6 +10,7 @@ extends Node
 @export var level_manager: PackedScene
 @export var walker_level: PackedScene
 @export var walker_room_level: PackedScene
+@export var bsp_level: PackedScene
 
 
 @export_category("Audio")

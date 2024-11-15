@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://bo6x2rej6rm0y"]
+
+[ext_resource type="Script" path="res://Scenes/Game_Manager/Level_Generators/BSP_Level/bsp_level.gd" id="1_qj2we"]
+[ext_resource type="PackedScene" uid="uid://cu5jlhe8usdkc" path="res://Scenes/Background/background.tscn" id="2_5tgg6"]
+[ext_resource type="PackedScene" uid="uid://c2f251vwx2led" path="res://Scenes/Exit/Exit.tscn" id="2_vagfc"]
+[ext_resource type="PackedScene" uid="uid://dlsox1gb4ljat" path="res://Scenes/Treasure/Treasure.tscn" id="3_cqenn"]
+[ext_resource type="TileSet" uid="uid://bp6smkbjkuwan" path="res://Assets/Level_Tilemap.tres" id="3_et4wq"]
+[ext_resource type="PackedScene" uid="uid://ccl4xqd5sml6o" path="res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.tscn" id="4_1cfl6"]
+
+[node name="BSP_Level" type="Node2D"]
+script = ExtResource("1_qj2we")
+exit = ExtResource("2_vagfc")
+treasure = ExtResource("3_cqenn")
+enemy = ExtResource("4_1cfl6")
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Background" parent="Terrain" instance=ExtResource("2_5tgg6")]
+
+[node name="Terrain" type="TileMapLayer" parent="Terrain"]
+tile_set = ExtResource("3_et4wq")
+
+[node name="Exit_Finder" type="NavigationAgent2D" parent="Terrain/Terrain"]
+path_desired_distance = 0.1
+
+[node name="Treasure_Holder" type="Node2D" parent="."]
+
+[node name="Enemies_Holder" type="Node2D" parent="."]

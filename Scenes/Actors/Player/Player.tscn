@@ -1340,13 +1340,12 @@ layer = 0
 
 [node name="Stats" parent="." node_paths=PackedStringArray("hurt_sound_player") instance=ExtResource("2_tvyju")]
 unique_name_in_owner = true
-max_health = 10.0
+max_health = 100.0
 base_damage = 10.0
 hurt_sound_player = NodePath("../Audio/Hurt_Sound")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
-zoom = Vector2(4, 4)
+zoom = Vector2(0.65, 0.65)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fnwby")

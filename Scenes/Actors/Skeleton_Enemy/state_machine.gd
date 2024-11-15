@@ -43,3 +43,7 @@ func _on_child_transition(state, new_state_name: String):
 
 	new_state.enter()
 	current_state = new_state
+
+
+func _change_to_stun():
+	_on_child_transition(StunState, "stunstate")

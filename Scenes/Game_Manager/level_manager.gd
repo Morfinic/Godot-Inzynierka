@@ -11,18 +11,22 @@ func _ready() -> void:
 
 
 func init_level():
-	var floor_id = RunStats.Floor % 2
+	var floor_id = RunStats.Floor % 1
 	var level
 	var level_size := Vector2i(38, 20)
 	#38, 20
 
 	match floor_id:
-		1:
-			level = Resources.walker_level.instantiate().with_data(
+		0:
+			level = Resources.bsp_level.instantiate().with_data(
+				Rect2(Vector2(1, 1), level_size), player
+			)
+		2:
+			level = Resources.walker_room_level.instantiate().with_data(
 				level_size / 2, Rect2(Vector2(1, 1), level_size), player
 			)
-		0:
-			level = Resources.walker_room_level.instantiate().with_data(
+		1:
+			level = Resources.walker_level.instantiate().with_data(
 				level_size / 2, Rect2(Vector2(1, 1), level_size), player
 			)
 

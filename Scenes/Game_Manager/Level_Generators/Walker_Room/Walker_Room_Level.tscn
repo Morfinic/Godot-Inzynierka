@@ -20,7 +20,7 @@ enemy = ExtResource("4_l5df1")
 [node name="Terrain" type="TileMapLayer" parent="Terrain"]
 tile_set = ExtResource("3_jbig5")
 
-[node name="Terrain_PathFinder" type="NavigationAgent2D" parent="Terrain/Terrain"]
+[node name="Exit_Finder" type="NavigationAgent2D" parent="Terrain/Terrain"]
 path_desired_distance = 0.1
 navigation_layers = 4
 path_postprocessing = 1

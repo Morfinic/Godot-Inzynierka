@@ -6,7 +6,7 @@ class_name Walker_Room_Level
 @onready var floor_tilemap: TileMapLayer = $Terrain/Terrain
 @onready var treasure_holder: Node2D = $Treasure_Holder
 @onready var enemies_holder: Node2D = $Enemies_Holder
-@onready var nav_agent: NavigationAgent2D = $Terrain/Terrain/Terrain_PathFinder
+@onready var nav_agent: NavigationAgent2D = $Terrain/Terrain/Exit_Finder
 
 
 @export var exit: PackedScene

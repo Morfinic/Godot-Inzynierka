@@ -10,6 +10,9 @@ extends CharacterBody2D
 @onready var stats: Node = $Stats
 
 
+var dead: bool = false
+
+
 func _ready() -> void:
 	stats.connect("death", _death)
 
@@ -37,9 +40,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _death():
-	if animation_player.is_playing():
-		animation_player.stop()
-	animation_player.play("death")
+	if !dead:
+		dead = true
+		animation_player.play("death")
 
 
 func _death_screen():

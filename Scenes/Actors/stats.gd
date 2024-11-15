@@ -4,6 +4,7 @@ extends Node
 signal death
 signal took_damage(health)
 signal increased_max_health(health)
+signal stun_state
 
 
 @export var stun_timer: Timer = null
@@ -17,6 +18,7 @@ signal increased_max_health(health)
 
 @onready var health: float = max_health
 var damage
+var dead: bool = false
 
 
 func _ready() -> void:
@@ -31,18 +33,22 @@ func update_damage():
 
 
 func take_damage(_damage):
-	health -= _damage
-	took_damage.emit(health)
+	if !dead:
+		health -= _damage
+		took_damage.emit(health)
 
-	if health > 0 and hurt_sound_player.playing == false:
-		hurt_sound_player.play()
+		if health <= 0:
+			dead = true
+			death.emit()
+			return
 
-	if health <= 0:
-		death.emit()
+		if health > 0 and hurt_sound_player.playing == false and !dead:
+			hurt_sound_player.play()
 
-	if stun_timer != null:
-		owner.process_mode = Node.PROCESS_MODE_DISABLED
-		stun_timer.start(0.5)
+		if stun_timer != null:
+			#owner.process_mode = Node.PROCESS_MODE_DISABLED
+			#stun_timer.start(0.5)
+			stun_state.emit()
 
 
 func increase_max_health(amount):

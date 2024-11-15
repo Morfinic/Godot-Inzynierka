@@ -10,9 +10,17 @@ class_name AttackState
 @onready var attack_coll: CollisionShape2D = $"../../Attack_Area/CollisionShape2D"
 
 
+func _ready() -> void:
+	stats.stun_state.connect(_switch_to_Stun)
+
+
 func enter():
 	self_charBody.move_direction = Vector2.ZERO
 	$"../../AnimationPlayer".play("attack")
+
+
+func exit():
+	$"../../AnimationPlayer".stop()
 
 
 func calculate_state():
@@ -29,3 +37,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	attack_coll.set_deferred("disabled", true)
 	if body.is_in_group("Player"):
 		body.get_node("Stats").take_damage(stats.damage)
+
+
+func _switch_to_Stun():
+	change_state.emit(self, "stunstate")

@@ -68,7 +68,7 @@ func place_exit():
 
 	var tmp_map = map.duplicate()
 	tmp_map.shuffle()
-	var exit_options = tmp_map.slice(0, 10)
+	var exit_options = tmp_map.slice(0, 20)
 	var _spawn_tile = find_exit_position(exit_options)
 
 	var del_tiles = Utils.get_surrounding_tile_area(
@@ -97,7 +97,7 @@ func find_exit_position(exit_options):
 	var exit_position = first_pos
 	var player_spawn = player.position
 
-	for option in exit_options:
+	for option in map:
 		exit_finder.target_position = exit_position
 		var distance_to_current_exit = exit_finder.distance_to_target()
 

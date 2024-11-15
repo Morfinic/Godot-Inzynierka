@@ -10,6 +10,7 @@ var next_path_pos
 
 func _ready() -> void:
 	call_deferred("path_setup")
+	$"../../Stats".stun_state.connect(_switch_to_Stun)
 
 
 func enter():
@@ -43,3 +44,7 @@ func path_setup():
 func _on_engage_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		change_state.emit(self, "idlestate")
+
+
+func _switch_to_Stun():
+	change_state.emit(self, "stunstate")

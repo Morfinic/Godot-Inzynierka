@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ccl4xqd5sml6o"]
+[gd_scene load_steps=40 format=3 uid="uid://ccl4xqd5sml6o"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/skeleton_enemy.gd" id="1_dfgn7"]
 [ext_resource type="Texture2D" uid="uid://wy7s0ttcdk2s" path="res://Scenes/Actors/Skeleton_Enemy/Assets/skeleton_attack.png" id="1_qhfrr"]
@@ -8,10 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://2org5kcgins4" path="res://Scenes/Actors/stats.tscn" id="4_wda7t"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/state_machine.gd" id="5_q7gt7"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/idle.gd" id="6_arwbr"]
+[ext_resource type="Texture2D" uid="uid://bcvv13nuvv6lf" path="res://Scenes/Actors/Skeleton_Enemy/Assets/skeleton_stun.png" id="6_l1jy2"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/stun_timer.gd" id="6_xyj73"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/follow.gd" id="8_t4arp"]
 [ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/attack_state.gd" id="9_a6p4p"]
 [ext_resource type="AudioStream" uid="uid://cl3txsml7khha" path="res://Assets/Audio/bone_break.mp3" id="12_bdqar"]
+[ext_resource type="Script" path="res://Scenes/Actors/Skeleton_Enemy/stun_state.gd" id="12_w58eg"]
 [ext_resource type="AudioStream" uid="uid://byi0ja7tgkbac" path="res://Assets/Audio/bone_crack2.mp3" id="13_jvje1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lii23"]
@@ -48,6 +50,14 @@ region = Rect2(0, 0, 15, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_inxka"]
 atlas = ExtResource("2_lf12d")
+region = Rect2(15, 0, 15, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an45d"]
+atlas = ExtResource("6_l1jy2")
+region = Rect2(0, 0, 15, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq61w"]
+atlas = ExtResource("6_l1jy2")
 region = Rect2(15, 0, 15, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10jns"]
@@ -100,6 +110,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an45d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq61w")
+}],
+"loop": true,
+"name": &"Stun",
 "speed": 5.0
 }, {
 "frames": [{
@@ -326,13 +347,43 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_k0s6a"]
+resource_name = "stun"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animated_Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Stun"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Animated_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wvmwj"]
 _data = {
 "RESET": SubResource("Animation_v70mp"),
 "attack": SubResource("Animation_emgit"),
 "death": SubResource("Animation_tqeyy"),
 "idle": SubResource("Animation_20b17"),
-"run": SubResource("Animation_iba4x")
+"run": SubResource("Animation_iba4x"),
+"stun": SubResource("Animation_k0s6a")
 }
 
 [node name="SkeletonEnemy" type="CharacterBody2D" groups=["Enemy"]]
@@ -341,7 +392,7 @@ script = ExtResource("1_dfgn7")
 
 [node name="Stats" parent="." node_paths=PackedStringArray("stun_timer", "hurt_sound_player") instance=ExtResource("4_wda7t")]
 stun_timer = NodePath("../Stun_Timer")
-max_health = 100.0
+max_health = 25.0
 base_damage = 5.0
 hurt_sound_player = NodePath("../Audio/Hurt_Sound")
 
@@ -400,6 +451,9 @@ script = ExtResource("9_a6p4p")
 self_charBody = NodePath("../..")
 stats = NodePath("../../Stats")
 
+[node name="StunState" type="Node" parent="State_Machine"]
+script = ExtResource("12_w58eg")
+
 [node name="Audio" type="Node" parent="."]
 
 [node name="Death_Sound" type="AudioStreamPlayer" parent="Audio"]
@@ -414,4 +468,4 @@ bus = &"SFX"
 [connection signal="body_entered" from="Engage_Area" to="State_Machine/IdleState" method="_on_engage_area_body_entered"]
 [connection signal="body_exited" from="Engage_Area" to="State_Machine/FollowState" method="_on_engage_area_body_exited"]
 [connection signal="body_entered" from="Attack_Area" to="State_Machine/AttackState" method="_on_attack_area_body_entered"]
-[connection signal="timeout" from="Stun_Timer" to="Stun_Timer" method="_on_timeout"]
+[connection signal="timeout" from="Stun_Timer" to="State_Machine/StunState" method="_on_stun_timer_timeout"]

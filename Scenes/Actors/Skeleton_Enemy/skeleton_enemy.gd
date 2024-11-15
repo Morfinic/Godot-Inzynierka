@@ -4,6 +4,7 @@ class_name Skeleton_Enemy
 
 var player_body: CharacterBody2D
 var move_direction = Vector2.ZERO
+var dead: bool = false
 
 
 @export var move_speed = 35.0
@@ -23,12 +24,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+#func _death():
+	#$Terrain_Collision.disabled = true
+	#RunStats.EnemiesKilled += 1
+	#if $AnimationPlayer.is_playing():
+		#$AnimationPlayer.stop()
+	#$AnimationPlayer.play("death")
+
 func _death():
-	$Terrain_Collision.disabled = true
-	RunStats.EnemiesKilled += 1
-	if $AnimationPlayer.is_playing():
-		$AnimationPlayer.stop()
-	$AnimationPlayer.play("death")
+	if !dead:
+		dead = true
+		RunStats.EnemiesKilled += 1
+		$AnimationPlayer.play("death")
 
 func _death_anim():
 	queue_free()
