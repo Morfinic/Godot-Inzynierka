@@ -18,7 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().paused = true
 			paused = true
 			self.visible = true
-		else:
+		elif paused and get_child_count() == 1:
 			get_tree().paused = false
 			paused = false
 			self.visible = false

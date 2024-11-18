@@ -35,6 +35,7 @@ func _ready() -> void:
 	place_treasure()
 	place_enemies()
 
+
 func generate_level():
 	var walker = Walker.new(starting_position, borders)
 	var steps_amount = floor((borders.size.x * borders.size.y) * 0.75)

@@ -16,6 +16,8 @@ extends Control
 
 
 func _ready() -> void:
+	$Background.set_size(Vector2(38, 20))
+
 	master_slider.value = GameSettings.Audio_Master
 	music_slider.value = GameSettings.Audio_Music
 	sfx_slider.value = GameSettings.Audio_SFX
@@ -75,16 +77,8 @@ func _on_sfx_test_button_pressed() -> void:
 		audio_player.play()
 
 
-func _on_music_test_button_pressed() -> void:
-	toggle_testButton_disable()
-	if !audio_player.playing:
-		audio_player.set_stream(load("res://Scenes/Main_Menu/Settings/Audio/light_match.wav"))
-		audio_player.bus = "Music"
-		audio_player.play()
-
 func _on_test_audio_player_finished() -> void:
 	toggle_testButton_disable()
 
 func toggle_testButton_disable():
-	%Music_Test_Button.disabled = !%Music_Test_Button.disabled
 	%SFX_Test_Button.disabled = !%SFX_Test_Button.disabled

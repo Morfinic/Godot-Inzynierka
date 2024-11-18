@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://6a33rf2ypejt"]
+[gd_scene load_steps=5 format=3 uid="uid://6a33rf2ypejt"]
 
 [ext_resource type="Script" path="res://Scenes/Main_Menu/main_menu.gd" id="1_selpb"]
 [ext_resource type="Theme" uid="uid://opgtdm6wstjx" path="res://Themes/menu.tres" id="1_xcx37"]
+[ext_resource type="FontFile" uid="uid://bsm7c4tvsb1do" path="res://Themes/Tiny5-Regular.ttf" id="3_ji3pq"]
 [ext_resource type="PackedScene" uid="uid://cu5jlhe8usdkc" path="res://Scenes/Background/background.tscn" id="4_yda1h"]
 
 [node name="MainMenu" type="Control"]
@@ -34,29 +35,60 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBox_Buttons" type="VBoxContainer" parent="Menu_Center_Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu_Center_Container"]
+layout_mode = 2
+theme_override_constants/separation = 96
+
+[node name="Panel" type="Panel" parent="Menu_Center_Container/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="Menu_Center_Container/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -72.0
+offset_right = 296.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.506162, 0, 0.0364925, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("3_ji3pq")
+theme_override_font_sizes/font_size = 128
+text = "Void Abyss"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBox_Buttons" type="VBoxContainer" parent="Menu_Center_Container/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Start" type="Button" parent="Menu_Center_Container/VBox_Buttons"]
+[node name="Start" type="Button" parent="Menu_Center_Container/VBoxContainer/VBox_Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_xcx37")
 text = "Start"
 
-[node name="Settings" type="Button" parent="Menu_Center_Container/VBox_Buttons"]
+[node name="Settings" type="Button" parent="Menu_Center_Container/VBoxContainer/VBox_Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_xcx37")
 text = "Settings"
 
-[node name="Exit" type="Button" parent="Menu_Center_Container/VBox_Buttons"]
+[node name="Exit" type="Button" parent="Menu_Center_Container/VBoxContainer/VBox_Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_xcx37")
 text = "Exit"
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
-[connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Menu_Center_Container/VBox_Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Menu_Center_Container/VBoxContainer/VBox_Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu_Center_Container/VBoxContainer/VBox_Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu_Center_Container/VBoxContainer/VBox_Buttons/Exit" to="." method="_on_exit_pressed"]
