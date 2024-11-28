@@ -119,7 +119,6 @@ func find_exit_position():
 	var rooms_dup = rooms.duplicate()
 	var first_room = rooms_dup.pop_front()
 	var exit_position = first_room.position
-	var player_spawn = player.position
 	var exit_room
 
 	for room in rooms_dup:
@@ -160,7 +159,7 @@ func place_treasure():
 
 func place_enemies():
 	for room in rooms_map.duplicate():
-		var enemy_amount = randi_range(1, 3)
+		var enemy_amount = room.size() / 10 if room.size() / 10 > 2 else 2
 
 		for i in enemy_amount:
 			var _spawn_tile = room.pick_random()

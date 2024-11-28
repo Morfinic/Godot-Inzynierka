@@ -135,7 +135,7 @@ func place_treasure():
 
 
 func place_enemies():
-	var enemy_amount = floor(map.size() / 20)
+	var enemy_amount = floor(map.size() / 10)
 	#var enemy_amount = 1
 
 	for i in enemy_amount:

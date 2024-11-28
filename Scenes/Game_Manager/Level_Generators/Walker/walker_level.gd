@@ -98,7 +98,7 @@ func find_exit_position(exit_options):
 	var exit_position = first_pos
 	var player_spawn = player.position
 
-	for option in map:
+	for option in exit_options:
 		exit_finder.target_position = exit_position
 		var distance_to_current_exit = exit_finder.distance_to_target()
 
@@ -133,7 +133,7 @@ func place_treasure():
 
 
 func place_enemies():
-	var enemy_amount = floor(map.size() / 20)
+	var enemy_amount = floor(map.size() / 10)
 	#var enemy_amount = 1
 
 	for i in enemy_amount:

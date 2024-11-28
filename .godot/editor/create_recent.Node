@@ -1,9 +1,10 @@
+NavigationAgent2D
+NavigationRegion2D
+TileMapLayer
+Node2D
 Panel
 VBoxContainer
 Label
-NavigationAgent2D
-Node2D
-TileMapLayer
 Timer
 Node
 AudioStreamPlayer
@@ -11,5 +12,3 @@ CanvasLayer
 Control
 CenterContainer
 MarginContainer
-HBoxContainer
-AnimationPlayer

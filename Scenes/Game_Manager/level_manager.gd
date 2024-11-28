@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func init_level():
-	var floor_id = RunStats.Floor % 3
+	var floor_id = RunStats.Floor % 1
 	var level
 	var level_size := Vector2i(38, 20)
 	#38, 20
@@ -20,17 +20,21 @@ func init_level():
 
 	match floor_id:
 		0:
-			level = Resources.bsp_level.instantiate().with_data(
+			level = Resources.ca_level.instantiate().with_data(
 				Rect2(Vector2(1, 1), level_size), player
 			)
-		1:
-			level = Resources.walker_level.instantiate().with_data(
-				level_size / 2, Rect2(Vector2(1, 1), level_size), player
-			)
-		2:
-			level = Resources.walker_room_level.instantiate().with_data(
-				level_size / 2, Rect2(Vector2(1, 1), level_size), player
-			)
+		#3:
+			#level = Resources.bsp_level.instantiate().with_data(
+				#Rect2(Vector2(1, 1), level_size), player
+			#)
+		#1:
+			#level = Resources.walker_level.instantiate().with_data(
+				#level_size / 2, Rect2(Vector2(1, 1), level_size), player
+			#)
+		#2:
+			#level = Resources.walker_room_level.instantiate().with_data(
+				#level_size / 2, Rect2(Vector2(1, 1), level_size), player
+			#)
 
 
 	level.z_index = -2
@@ -41,3 +45,10 @@ func _on_level_manager_child_exiting_tree(node: Node) -> void:
 	if node.name.ends_with("_Level") and player.stats.health > 0:
 		RunStats.Floor += 1
 		$"../Level_Transition".change_level()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("reset_floor"):
+		var child = self.get_child(1)
+		if child:
+			child.queue_free()

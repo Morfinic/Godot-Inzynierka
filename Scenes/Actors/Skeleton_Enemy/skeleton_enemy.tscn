@@ -429,6 +429,7 @@ target_desired_distance = 32.0
 navigation_layers = 4
 path_postprocessing = 1
 avoidance_layers = 0
+debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="Stun_Timer" type="Timer" parent="."]
 process_mode = 3
